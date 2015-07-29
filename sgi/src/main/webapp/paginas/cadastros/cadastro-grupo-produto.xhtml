@@ -35,13 +35,12 @@
 				<p:outputLabel for="codigo" value="Código" />
 				<p:inputText id="codigo" size="10" readonly="true" />
 
-				<p:outputLabel for="descricao" value="Descrição" />
-				<p:inputText id="descricao" size="50" 
+				<p:outputLabel for="nome" value="Nome" />
+				<p:inputText id="nome" size="50" 
 					onkeyup="this.value = this.value.toUpperCase()"
-					value="#{cadastroGrupoProdutoBean.grupoProduto.descricao}" />
+					value="#{cadastroGrupoProdutoBean.grupoProduto.nome}" />
 					
-					<p:outputLabel for="teste" value="Teste"/>
-					<p:inputText id="teste" size="50" value="#{cadastroGrupoProdutoBean.grupoProduto.teste}" maxlength="50"/>
+					
 
 			</p:panelGrid>
 

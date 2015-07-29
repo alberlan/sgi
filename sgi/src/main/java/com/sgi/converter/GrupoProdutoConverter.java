@@ -6,7 +6,6 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 import com.sgi.model.GrupoProduto;
-import com.sgi.model.Produto;
 import com.sgi.repository.GrupoProdutoRepository;
 import com.sgi.util.cdi.CDIServiceLocator;
 
