@@ -4,13 +4,19 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table
@@ -19,17 +25,17 @@ public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long codigo;
-	private long codigoBarras;
-	private String descricao;
+	private Long codigoBarras;
+	private String nome;
 	private GrupoProduto grupoProduto;
-	private BigDecimal precoCusto;
-	private BigDecimal precoVenda;
-	private BigDecimal margemLucro;
-	private Date dataUltimaCompra;
-	private int quantidadeMinima;
+	private BigDecimal precoCusto = BigDecimal.ZERO;
+	private BigDecimal precoVenda = BigDecimal.ZERO;
+	private BigDecimal margemLucro = BigDecimal.ZERO;
+	private Integer quantidadeMinima;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codigo", length = 10)
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -38,23 +44,29 @@ public class Produto implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public long getCodigoBarras() {
+	@NotNull
+	@Column(name = "codigo_barras", nullable = false, length = 25)
+	public Long getCodigoBarras() {
 		return codigoBarras;
 	}
 
-	public void setCodigoBarras(long codigoBarras) {
+	public void setCodigoBarras(Long codigoBarras) {
 		this.codigoBarras = codigoBarras;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	@NotBlank
+	@Column(name = "nome", nullable = false, length = 55)
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
+	@NotNull
 	@ManyToOne
+	@JoinColumn(name = "grupo_produto_id", nullable = false)
 	public GrupoProduto getGrupoProduto() {
 		return grupoProduto;
 	}
@@ -63,6 +75,8 @@ public class Produto implements Serializable {
 		this.grupoProduto = grupoProduto;
 	}
 
+	@NotNull
+	@Column(name = "preco_custo", nullable = false, length = 10)
 	public BigDecimal getPrecoCusto() {
 		return precoCusto;
 	}
@@ -71,6 +85,8 @@ public class Produto implements Serializable {
 		this.precoCusto = precoCusto;
 	}
 
+	@NotNull
+	@Column(name = "preco_venda", nullable = false, length = 10)
 	public BigDecimal getPrecoVenda() {
 		return precoVenda;
 	}
@@ -79,6 +95,8 @@ public class Produto implements Serializable {
 		this.precoVenda = precoVenda;
 	}
 
+	@NotNull
+	@Column(name = "margem_lucro", nullable = false, length = 10)
 	public BigDecimal getMargemLucro() {
 		return margemLucro;
 	}
@@ -87,19 +105,13 @@ public class Produto implements Serializable {
 		this.margemLucro = margemLucro;
 	}
 
-	public Date getDataUltimaCompra() {
-		return dataUltimaCompra;
-	}
-
-	public void setDataUltimaCompra(Date dataUltimaCompra) {
-		this.dataUltimaCompra = dataUltimaCompra;
-	}
-
-	public int getQuantidadeMinima() {
+	@NotNull
+	@Column(name = "quantidade_minima", nullable = false, length = 10)
+	public Integer getQuantidadeMinima() {
 		return quantidadeMinima;
 	}
 
-	public void setQuantidadeMinima(int quantidadeMinima) {
+	public void setQuantidadeMinima(Integer quantidadeMinima) {
 		this.quantidadeMinima = quantidadeMinima;
 	}
 
