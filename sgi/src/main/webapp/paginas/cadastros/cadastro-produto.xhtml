@@ -1,0 +1,77 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:define name="titulo">Cadastro de Produto</ui:define>
+	<ui:define name="corpo">
+
+		<h:form>
+			<h1>Novo Produto</h1>
+			<p:messages autoUpdate="true"/>
+			<p:toolbar style="margin-top:05px">
+				<p:toolbarGroup>
+					<p:button value="Novo" />
+					<p:commandButton value="Salvar" action="#{cadastroProdutoBean.salvar}" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar" outcome="/paginas/pesquisas/pesquisa-produto" />
+				</p:toolbarGroup>
+
+			</p:toolbar>
+
+			<p:panelGrid columns="2" columnClasses="rotulo, campo"
+				styleClass="panelGrid">
+				<p:outputLabel for="codigo" value="Código" />
+				<p:inputText id="codigo" size="10" readonly="true" />
+
+				<p:outputLabel for="codigoBarras" value="Código de Barras" />
+				<p:inputText id="codigoBarras" size="15" />
+
+				<p:outputLabel for="descricao" value="Descrição" />
+				<p:inputText id="descricao" size="50" maxlength="50" required="true"
+					onkeyup="this.value = this.value.toUpperCase()" />
+
+				<p:outputLabel for="grupo" value="Grupo" />
+				<p:selectOneMenu id="grupo" value="#{teste.profissao}" effect="fold"
+					filter="true">
+					<f:selectItem itemLabel="Selecione uma Categoria" itemValue="" />
+					<f:selectItem itemLabel="Bebidas" itemValue="1" />
+					<f:selectItem itemLabel="Igiene" itemValue="2" />
+					<f:selectItem itemLabel="Pereciveis" itemValue="3" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="precoCusto" value="Preço de Custo" />
+				<p:inputText id="precoCusto" size="10" maxlength="10"
+					required="true" styleClass="moeda" />
+
+				<p:outputLabel for="precoVenda" value="Preço de Venda" />
+				<p:inputText id="precoVenda" size="10" maxlength="10"
+					required="true" styleClass="moeda" />
+
+
+				<p:outputLabel for="margemLucro" value="Margem de Lucro" />
+				<p:inputText id="margemLucro" size="10" styleClass="moeda" value="10,00" readonly="true" />
+
+				<p:outputLabel for="ultimaCompra" value="Data da Ultima Compra" />
+				<p:inputText id="ultimaCompra" size="10" maxlength="10"
+					readonly="true" />
+
+				<p:outputLabel for="estoqueAtual" value="Estoque Atual" />
+				<p:inputText id="estoqueAtual" size="10" maxlength="10"
+					readonly="true" />
+
+				<p:outputLabel for="quantidadeMinima" value="Quantidade Minima" />
+				<p:inputText id="quantidadeMinima" size="10" maxlength="10" required="true"/>
+
+
+			</p:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

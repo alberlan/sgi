@@ -1,0 +1,146 @@
+@CHARSET "utf-8";
+
+/*Toda tag body vai ser modificada (body LayoutPadrao)*/
+body {
+	font-family: Arial, Verdana;
+	font-size: 13px;
+	font-weight: normal;
+	
+}
+
+/*Toda tag header vai ser modificada(header LayoutPadrao)*/
+header {
+	padding: 05px 0px;
+	height: 30px;
+	background: gray;
+	color: white;
+	margin: 0px;
+	box-shadow: 0px 2px 2px #ccc;
+	/* 0px joga a sompra para a direita, 02px joga  a sombra para baixo, 02px joga a sombra para os quatro cantos */
+}
+
+header>div {
+	margin-left: 8px;
+	 
+}
+
+#conteudo {
+	padding: 0px 2px;
+}
+
+footer {
+	margin-bottom: 10px;
+	padding: 0px 8px;
+}
+
+h1{
+	font-size: 22px;
+	font-weight: 600;
+	padding: 0px;
+	margin-bottom:03px;
+	
+}
+
+#login-dialog{
+	width: 300px;
+	margin: auto;
+	margin-top: 150px;	
+}
+
+.grid-login{
+	background-color:#c0c0c0;
+	border-radius:8px;
+	padding: 15px;
+	border:1px solid #gray;
+	margin-top: 8px;	
+}
+
+.panelGrid {
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom:10px"
+	
+}
+
+/*A largura do rotulo é 150px exemplo na tela de produto, codigo, descricao e os outros todos com 140px de largura*/
+.rotulo {
+	width: 150px;
+}
+
+.rotulo1 {
+	width: 150px;
+}
+
+.campo1 {
+	width: 337px;
+}
+
+.ui-panelgrid td{
+	height: 28px;
+}
+
+.ajax-status{
+	position: fixed;
+	top: 55px;
+	right: 10px;
+	width: 35px;
+	height: 35px;
+	
+}
+
+.produto-tabela {
+	width: 100% !important;
+}
+
+.produto-tabela input {
+	width: 99%;
+}
+/* Da um espaçamento do label de 30px(direto na classe do primefaces)*/
+.ui-selectmanycheckbox td label{
+	margin-right: 30px;	
+}
+/* Redimencionar o tamanho do checkbox(Direto na classe do primefaces) */
+.ui-chkbox .ui-chkbox-box {
+  width: 14px !important;
+  height: 14px !important;
+  display: inline-block; 
+}
+
+/* Customiza TabView - início */
+.ui-tabs .ui-tabs-panel {
+    padding: 0.5em 0.2em !important;
+}
+
+.ui-tabs {
+    padding: 0px !important;
+}
+
+.ui-tabs .ui-tabs-nav {
+    margin: -1px !important;
+}
+
+.ui-tabs.ui-tabs-top > .ui-tabs-nav {
+    padding: 0px !important;
+}
+/* Customiza TabView - fim */
+
+/* Menu sistema inicio */
+.menu-sistema {
+	border: 0px !important;
+	padding: 0px !important;
+	background: none !important;
+}
+
+.menu-sistema .ui-menu-parent>a .ui-menuitem-text, .menu-sistema>.ui-menu-list>.ui-menuitem>a>.ui-menuitem-text
+	{
+	color: #ffffff !important;
+}
+
+.menu-sistema .ui-icon-triangle-1-s {
+	background: url(#{ resource [ 'images:seta-para-baixo.png' ]
+}
+)
+no-repeat
+;
+/* Menu sistema fim */
+

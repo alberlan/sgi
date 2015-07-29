@@ -1,0 +1,84 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:define name="titulo">Pesquisa de Fornecedor</ui:define>
+	<ui:define name="corpo">
+
+		<h:form>
+			<h1>Pesquisa de Fornecedor</h1>
+			<p:toolbar style="margin-top:05px">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Novo"
+						outcome="/paginas/cadastros/cadastro-fornecedor" />
+				</p:toolbarGroup>
+
+			</p:toolbar>
+
+			<p:panelGrid styleClass="panelGrid" columnClasses="rotulo,campo"
+				columns="2" style="margin-bottom:10px">
+				<p:outputLabel for="codigo" value="Código" />
+				<p:inputText id="codigo" size="10" />
+
+				<p:outputLabel for="nomeRazaoSocial" value="Nome/Razão Social" />
+				<p:inputText id="nomeRazaoSocial" size="40"
+					onkeyup="this.value = this.value.toUpperCase()" />
+
+			</p:panelGrid>
+
+			<p:dataTable value="#{pesquisaProdutosBean.produtosFiltrados}"
+				var="produto">
+
+				<p:column headerText="Código" width="40">
+					<h:outputText value="0001" />
+				</p:column>
+
+				<p:column headerText="CNPJ/CPF" width="140">
+					<h:outputText value="11.200.726/0002-75" />
+				</p:column>
+
+				<p:column headerText="Nome/Razão Social">
+					<h:outputText value="unioa noroeste brasileira da iasd" />
+				</p:column>
+
+				<p:column headerText="Telefone" width="110">
+					<h:outputText value="92 92127-1500" />
+				</p:column>
+
+
+				<p:column headerText="Endereço" >
+					<h:outputText value="avenida max teixeira" />
+				</p:column>
+
+				<p:column headerText="Cidade" width="150">
+					<h:outputText value="sao jose do rio preto" />
+				</p:column>
+
+				<p:column headerText="Status" width="60">
+					<h:outputText value="Inativo" />
+				</p:column>
+
+				<p:column headerText="Ação" width="90">
+
+					<p:commandButton icon="ui-icon-search" title="Pesquisa Detalhada"
+						style="font-size: 12px !important" />
+					<p:button icon="ui-icon-pencil" title="Editar"
+						style="font-size: 12px !important" />
+					<p:commandButton icon="ui-icon-trash" title="Desativar"
+						style="font-size: 12px !important" />
+
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

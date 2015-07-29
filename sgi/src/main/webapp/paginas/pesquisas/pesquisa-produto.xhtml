@@ -1,0 +1,90 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:define name="titulo">Pesquisa de Produto</ui:define>
+	<ui:define name="corpo">
+
+		<h:form>
+			<h1>Pesquisa de Produto</h1>
+			<p:toolbar style="margin-top:05px">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Novo"
+						outcome="/paginas/cadastros/cadastro-produto" />
+				</p:toolbarGroup>
+
+			</p:toolbar>
+
+			<p:panelGrid styleClass="panelGrid" columnClasses="rotulo,campo"
+				columns="2" style="margin-bottom:10px">
+				<p:outputLabel for="codigo" value="Código" />
+				<p:inputText id="codigo" size="10" />
+
+				<p:outputLabel for="descricao" value="Descrição" />
+				<p:inputText id="descricao" size="40"
+					onkeyup="this.value = this.value.toUpperCase()" />
+
+			</p:panelGrid>
+
+			<p:dataTable value="#{pesquisaProdutosBean.produtosFiltrados}"
+				var="produto">
+
+				<p:column headerText="Código" width="40">
+					<h:outputText value="0001" />
+				</p:column>
+
+				<p:column headerText="Produto">
+					<h:outputText value="BORRACHA DE APAGAR AZUL 500 MILIGRAMAS" />
+				</p:column>
+
+				<p:column headerText="Fornecedor">
+					<h:outputText value="UNIAO NOROESTE BRASILEIRA DA IASD" />
+				</p:column>
+
+				<p:column headerText="Preço de Custo" width="65">
+					<h:outputText value="200,00" />
+				</p:column>
+
+				<p:column headerText="Preço de Venda" width="65">
+					<h:outputText value="300,00" />
+				</p:column>
+
+				<p:column headerText="Margem de Lucro" width="65">
+					<h:outputText value="10,00" />
+				</p:column>
+
+				<p:column headerText="Estoque Atual" width="60">
+					<h:outputText value="50000" />
+				</p:column>
+
+				<p:column headerText="Ultima Compra" width="75">
+					<h:outputText value="10/05/2015" />
+				</p:column>
+
+				<p:column headerText="Status" width="60">
+					<h:outputText value="Inativo" />
+				</p:column>
+
+				<p:column headerText="Ação" width="60">
+					<p:button icon="ui-icon-pencil" title="Editar"
+						style="font-size: 12px !important" />
+					<p:commandButton icon="ui-icon-trash" title="Desativar"
+						style="font-size: 12px !important" />
+				</p:column>
+
+			</p:dataTable>
+
+
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

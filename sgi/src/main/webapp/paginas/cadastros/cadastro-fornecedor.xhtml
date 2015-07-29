@@ -1,0 +1,98 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro de Fornecedor</ui:define>
+	<ui:define name="corpo">
+		<h:form id="frmFornecedor">
+			<h1>Novo Fornecedor</h1>
+
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:button value="Novo"
+						outcome="/paginas/cadastros/cadastro-fornecedor" />
+					<p:commandButton value="Salvar" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" styleClass="panelGrid"
+				columnClasses="rotulo, campo">
+				<p:outputLabel value="Tipo de Fornecedor" />
+
+				<h:panelGroup>
+					<p:outputLabel for="chekCpf" value="CPF" />
+					<h:selectBooleanCheckbox id="chekCpf" value="#{fornecedorBean.cpf}"
+						onchange="submit();" />
+
+					<p:outputLabel for="chekCnpj" value="CNPJ" />
+					<h:selectBooleanCheckbox id="chekCnpj"
+						value="#{fornecedorBean.cnpj}" onchange="submit();" />
+				</h:panelGroup>
+
+				<p:outputLabel for="cnpj" value="CNPJ"
+					rendered="#{fornecedorBean.cnpj}" />
+				<p:inputMask id="cnpj" mask="99.999.999/9999-99"
+					rendered="#{fornecedorBean.cnpj}" size="15" />
+
+				<p:outputLabel for="cpf" value="CPF"
+					rendered="#{fornecedorBean.cpf}" />
+				<p:inputMask id="cpf" mask="999.999.999-99"
+					rendered="#{fornecedorBean.cpf}" size="15" />
+
+				<p:outputLabel for="inscricaoEstadual" value="Inscrição Estadual"
+					rendered="#{fornecedorBean.cnpj}" />
+				<p:inputMask id="inscricaoEstadual" mask="99.999.999" size="10"
+					rendered="#{fornecedorBean.cnpj}" />
+
+				<p:outputLabel for="nomeRazaoSocial" value="Nome/Razão Social" />
+				<p:inputText id="nomeRazaoSocial" size="60"
+					onkeyup="this.value = this.value.toUpperCase()" />
+
+				<p:outputLabel for="endereco" value="Endereço" />
+				<p:inputText id="endereco" size="50"
+					onkeyup="this.value = this.value.toUpperCase()" />
+
+				<p:outputLabel for="numero" value="Número" />
+				<p:inputMask id="numero" mask="9?9999999" placeHolder="" size="10" />
+
+
+				<p:outputLabel for="bairro" value="Bairro" />
+				<p:inputText id="bairro" size="50"
+					onkeyup="this.value = this.value.toUpperCase()" />
+
+				<p:outputLabel for="cidade" value="Cidade" />
+				<p:selectOneMenu id="cidade" value="#{teste.profissao}"
+					effect="fold" filter="true">
+					<f:selectItem itemLabel="Selecione uma Cidade" itemValue="F" />
+					<f:selectItem itemLabel="Manaus" itemValue="1" />
+					<f:selectItem itemLabel="Manicoré" itemValue="2" />
+					<f:selectItem itemLabel="Parintins" itemValue="3" />
+					<f:selectItem itemLabel="Maraã" itemValue="4" />
+				</p:selectOneMenu>
+				
+				<p:outputLabel for="cep" value="Cep" />
+				<p:inputMask id="cep" mask="99999.999" size="10" />
+
+				<p:outputLabel for="telefoneFixo" value="Telefone Fixo" />
+				<p:inputMask id="telefoneFixo" mask="(99)9999-9999 / (99)9999-9999"
+					size="30" />
+
+				<p:outputLabel for="telefoneCelular" value="Telefone Celular" />
+				<p:inputMask id="telefoneCelular"
+					mask="(99)99999-9999 / (99)99999-9999" size="30" />
+
+				<p:outputLabel for="email" value="E-mail" />
+				<p:inputText id="email" size="45" />
+
+
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

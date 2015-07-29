@@ -1,0 +1,161 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:define name="titulo"> Novo Pedido</ui:define>
+	<ui:define name="corpo">
+		<h:form>
+			<h1>Novo Pedido</h1>
+			<p:toolbar>
+
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/paginas/pedido/emitir-pedido" />
+					<p:commandButton value="Salvar" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:commandButton value="Emitir" />
+					<p:commandButton value="Cancelar" />
+					<p:commandButton value="Enviar por E-mail" />
+					<p:separator />
+					<p:button value="Pesquisar"
+						outcome="/paginas/pedido/pesquisa-pedido" />
+
+				</p:toolbarGroup>
+
+			</p:toolbar>
+
+			<p:panelGrid styleClass="panelGrid" columnClasses="rotulo,campo"
+				columns="4" style="margi-top:10px">
+
+				<p:outputLabel value="Número" />
+				<h:outputText value="12345" />
+
+				<p:outputLabel value="Data de Criação" />
+				<h:outputText value="23/11/1985" />
+
+				<p:outputLabel value="Status" />
+				<h:outputText value="Orçado" />
+
+				<p:outputLabel value="Vendedor" />
+				<p:selectOneMenu>
+					<f:selectItem itemLabel="Selecione um Vendedor" />
+					<f:selectItem itemLabel="Alberlan Morais de Freitas" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Cliente" />
+				<p:autoComplete dropdown="true" size="40" />
+
+				<p:outputLabel value="Forma de Pagamento" />
+				<p:selectOneMenu>
+					<f:selectItem itemLabel="Selecione" />
+					<f:selectItem itemLabel="Cartão" />
+					<f:selectItem itemLabel="Dinheiro" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Valor do Frete" />
+				<p:inputText size="10" styleClass="moeda" />
+
+				<p:outputLabel value="SubTotal" style="font-weight:bold" />
+				<h:outputText value="R$ 0,00" style="font-weight:bold" size="10"
+					styleClass="moeda" />
+
+				<p:outputLabel value="Valor de Desconto" />
+				<p:inputText size="10" styleClass="moeda" />
+
+				<p:outputLabel value="Total do Pedido"
+					style="font-weight:bold; font-size:1.2em" />
+				<h:outputText value="R$ 0,00"
+					style="font-weight:bold; font-size:1.2em" size="10"
+					styleClass="moeda" />
+
+			</p:panelGrid>
+
+			<p:tabView style="margin-top:10px">
+				<p:tab title="Itens">
+					<p:dataTable id="tabelaPedido" value="#{cadastroPedidoBean.itens}"
+						var="item">
+
+						<p:column headerText="Quantidade" width="100">
+							<p:inputText size="8" value="1" />
+						</p:column>
+
+						<p:column headerText="Produto">
+							<p:autoComplete styleClass="produto-tabela" />
+						</p:column>
+
+						<p:column headerText="Valor Unitário" width="120">
+							<h:outputText value="R$ 10,00" />
+						</p:column>
+
+						<p:column headerText="Estoque" width="100">
+							<h:outputText value="00" />
+						</p:column>
+
+						<p:column headerText="Valor Total" width="120">
+							<h:outputText value="R$ 10,00" />
+						</p:column>
+
+						<p:columnGroup type="footer">
+							<p:row>
+								<p:column colspan="4" footerText="Subtotal"
+									style="text-align:right" />
+								<p:column style="text-align:right" footerText="R$ 0,00" />
+							</p:row>
+						</p:columnGroup>
+
+					</p:dataTable>
+
+				</p:tab>
+
+				<p:tab title="Dados de Entrega">
+					<p:panelGrid columns="4" columnClasses="rotulo,campo,rotulo,campo"
+						styleClass="panelGrid">
+
+						<p:outputLabel value="Data de Entrega" />
+						<p:calendar pattern="dd/MM/yyyy" size="12" />
+
+						<p:spacer />
+						<p:spacer />
+
+						<p:outputLabel value="Logradouro" />
+						<p:inputText size="40" />
+
+						<p:outputLabel value="Número" />
+						<p:inputText size="10" />
+
+						<p:outputLabel value="Complemento" />
+						<p:inputText size="40" />
+
+						<p:outputLabel value="Cidade" />
+						<p:inputText size="30" />
+
+						<p:outputLabel value="Estado" />
+						<p:inputText size="20" />
+
+						<p:outputLabel value="Cep" />
+						<p:inputText size="10" />
+
+					</p:panelGrid>
+
+				</p:tab>
+
+				<p:tab title="Observação">
+					<h:panelGroup layout="block" style="padding-right:10px">
+						<p:inputTextarea rows="10" style="width:100%" />
+					</h:panelGroup>
+				</p:tab>
+			</p:tabView>
+
+
+
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,83 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:define name="titulo"> Cadastro de Funcionário</ui:define>
+	<ui:define name="corpo">
+		<h:form>
+			<h1>Novo Funcionário</h1>
+			<p:toolbar>
+
+				<p:toolbarGroup>
+					<p:button value="Novo"
+						outcome="/paginas/cadastros/cadastro-funcionario" />
+					<p:commandButton value="Salvar" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar" />
+				</p:toolbarGroup>
+
+			</p:toolbar>
+
+			<p:panelGrid columns="2" styleClass="panelGrid"
+				columnClasses="rotulo, campo">
+				<p:outputLabel for="codigo" value="Código" />
+				<p:inputText id="codigo" size="10" readonly="true" />
+
+				<p:outputLabel for="nome" value="Nome" />
+				<p:inputText id="nome" size="51" maxlength="45" required="true"
+					onkeyup="this.value = this.value.toUpperCase()" />
+
+				<p:outputLabel for="cpf" value="CPF" />
+				<p:inputMask id="cpf" mask="999.999.999-99" size="12"
+					required="true" />
+
+				<p:outputLabel for="rg" value="RG" />
+				<p:inputMask id="rg" mask="9999999-99" size="12" required="true" />
+
+				<p:outputLabel for="email" value="E-mail" />
+				<p:inputText id="email" size="51" />
+
+				<p:outputLabel for="telFixo" value="Tel Fixo" />
+				<p:inputMask id="telFixo" mask="(99)9999-9999 / (99)9999-9999 " size="30"/>
+
+				<p:outputLabel for="telCelular" value="Tel Celular" />
+				<p:inputMask id="telCelular" mask="(99)99999-9999 / (99)99999-9999" size="30"/>
+
+				<p:outputLabel for="cidade" value="Cidade" />
+				<p:selectOneMenu id="cidade" value="#{funcionario.cidade}"
+					effect="fold" filter="true">
+					<f:selectItem itemLabel="Selecione uma Cidade" itemValue="" />
+					<f:selectItem itemLabel="Manaus" itemValue="1" />
+					<f:selectItem itemLabel="Maraã" itemValue="2" />
+					<f:selectItem itemLabel="Maringa" itemValue="3" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="endereco" value="Endereço" />
+				<p:inputText id="endereco" size="51" required="true"
+					onkeyup="this.value = this.value.toUpperCase()" />
+
+				<p:outputLabel for="numero" value="Número" />
+				<p:inputMask id="numero" mask="9?999999999999999" placeHolder=""
+					size="10" />
+
+				<p:outputLabel for="bairro" value="Bairro" />
+				<p:inputText id="bairro" size="30"
+					onkeyup="this.value = this.value.toUpperCase()" />
+
+				<p:outputLabel for="cep" value="Cep" />
+				<p:inputMask id="cep" mask="99999-999"	size="10" />
+
+			</p:panelGrid>
+
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>

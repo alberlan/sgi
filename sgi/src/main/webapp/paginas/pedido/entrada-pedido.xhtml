@@ -1,0 +1,168 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:define name="titulo"> Entrada de Nota</ui:define>
+	<ui:define name="corpo">
+		<h:form>
+			<h1>Nova Nota de Entrada</h1>
+			<p:toolbar>
+
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/paginas/pedido/entrada-pedido" />
+					<p:commandButton value="Salvar" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar" />
+				</p:toolbarGroup>
+
+			</p:toolbar>
+
+			<!-- PANELGRID 1  -->
+			<p:panelGrid columns="8" styleClass="panelGrid"
+				columnClasses="rotulo, campo" style="margin-bottom:-10px">
+
+				<p:outputLabel for="numeroNota" value="Número da Nota" />
+				<p:inputMask id="numeroNota" mask="9?9999999999" placeHolder=""
+					required="true" size="10" />
+
+				<p:outputLabel value="Série" />
+				<p:inputText size="10" />
+
+				<p:outputLabel for="dataEmissao" value="Data Emissão" />
+				<p:calendar id="dataEmissao" pattern="dd-MM-yyyy" mask="true"/>
+
+				<p:outputLabel for="dataMovimento" value="Data Movimento" />
+				<p:calendar id="dataMovimento" pattern="dd-MM-yyyy" mask="true" />
+
+			</p:panelGrid>
+
+			<!-- PANELGRID 2  -->
+			<p:panelGrid columns="4" styleClass="panelGrid"
+				columnClasses="rotulo, campo" style="margin-bottom:-10px">
+
+				<p:outputLabel for="codigoModelo" value="Cod. Modelo da Nota" />
+				<p:selectOneMenu id="codigoModelo" value="#{teste.profissao}"
+					required="true">
+					<f:selectItem itemLabel="Selecione uma Opção " itemValue="" />
+					<f:selectItem itemLabel="55 - Nota Fiscal Eletrônica"
+						itemValue="55" />
+					<f:selectItem itemLabel="01 - Nota Sei nao" itemValue="sn" />
+					<f:selectItem itemLabel="02 - Nota Quem Sabe" itemValue="qs" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="chaveNfe" value="Chave NF-e" />
+				<p:inputMask id="chaveNfe"
+					mask="9999 9999 9999 9999 9999 9999 9999 9999 9999 9999 9999"
+					placeHolder="" required="true" size="53" />
+			</p:panelGrid>
+
+			<!-- PANELGRID 3  -->
+			<p:panelGrid columns="4" styleClass="panelGrid"
+				columnClasses="rotulo, campo1" style="margin-bottom:-10px">
+				<p:outputLabel value="Regime Tributario" />
+
+				<p:selectOneRadio>
+					<f:selectItem itemLabel="Normal" itemValue="normal" />
+					<f:selectItem itemLabel="Simples Nacional"
+						itemValue="simplesNacional" />
+				</p:selectOneRadio>
+
+				<p:outputLabel value="Observação em Nota" />
+				<p:inputText size="90"
+					onkeyup="this.value = this.value.toUpperCase()" />
+			</p:panelGrid>
+
+			<!-- PANELGRID 3  -->
+			<p:panelGrid columns="10" styleClass="panelGrid"
+				columnClasses="rotulo1, campo" style="margin-bottom:10px">
+
+				<p:outputLabel for="baseIcms" value="Base ICMS" />
+				<p:inputText id="baseIcms" size="8" styleClass="moeda" />
+
+				<p:outputLabel for="valorIcms" value="Valor ICMS" />
+				<p:inputText id="valorIcms" size="8" styleClass="moeda" />
+
+				<p:outputLabel for="valorIcmsSt" value="Base ICMS-ST" />
+				<p:inputText id="valorIcmsSt" size="8" styleClass="moeda" />
+
+				<p:outputLabel for="basePisCofin" value="Base PIS/COFIN" />
+				<p:inputText id="basePisCofin" size="8" styleClass="moeda" />
+
+				<p:outputLabel for="baseIpi" value="Base IPI" />
+				<p:inputText id="baseIpi" size="8" styleClass="moeda" />
+
+				<p:outputLabel for="valorIpi" value="Valor IPI" />
+				<p:inputText id="valorIpi" size="8" styleClass="moeda" />
+
+				<p:outputLabel for="desconto" value="Desconto" />
+				<p:inputText id="desconto" size="8" styleClass="moeda" />
+
+				<p:outputLabel for="valorFrete" value="Valor Frete" />
+				<p:inputText id="valorFrete" size="8" styleClass="moeda" />
+
+				<p:outputLabel for="valorSeguro" value="Valor Seguro" />
+				<p:inputText id="valorSeguro" size="8" styleClass="moeda" />
+
+				<p:outputLabel value="Total da Nota" />
+				<p:inputText id="totalNota" size="8" styleClass="moeda"
+					readonly="true" />
+
+			</p:panelGrid>
+
+			<p:dataTable value="#{pesquisaProdutosBean.produtosFiltrados}"
+				var="pedido">
+				
+				<p:column headerText="Item" width="40">
+				<h:outputText value="1"/>
+				</p:column>				
+
+				<p:column headerText=" Descrição do Produto">
+					<h:outputText value="TONER 85A" />
+				</p:column>
+				
+				<p:column headerText="CST" width="40">
+					<h:outputText value="40" />
+				</p:column>
+				
+				<p:column headerText="CFOP" width="40">
+					<h:outputText value="1102" />
+				</p:column>
+				
+				<p:column headerText="Quantd" width="50">
+					<h:outputText value="10" />
+				</p:column>
+				
+				<p:column headerText="Desc" width="50">
+					<h:outputText value="00" />
+				</p:column>
+				
+				<p:column headerText="Total Itens R$" width="70">
+					<h:outputText value="10" />
+				</p:column>
+				
+				<p:column headerText="Base de Calc ICMS" width="90">
+					<h:outputText value="10" />
+				</p:column>
+
+				
+
+				<p:column headerText="Valor Total" width="70">
+					<h:outputText value="10,00" />
+				</p:column>
+
+			</p:dataTable>
+
+
+
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>
