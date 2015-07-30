@@ -7,8 +7,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-@ManagedBean(name = "funcionario")
-@ViewScoped
 public class FuncionarioBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
