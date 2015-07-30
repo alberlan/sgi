@@ -14,7 +14,7 @@ public class GrupoProdutoRepository implements Serializable {
 
 	@Inject
 	EntityManager manager;
-
+	
 	public GrupoProduto guardar(GrupoProduto grupoProduto) {
 		return manager.merge(grupoProduto);
 	}

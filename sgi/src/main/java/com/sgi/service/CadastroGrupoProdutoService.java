@@ -14,17 +14,17 @@ public class CadastroGrupoProdutoService implements Serializable {
 
 	@Inject
 	private GrupoProdutoRepository grupoProdutoRepository;
-
+	
 	@Transactional
 	public GrupoProduto salvar(GrupoProduto grupoProduto) {
-		GrupoProduto grupoExistente = grupoProdutoRepository
-				.porNome(grupoProduto.getNome());
+		GrupoProduto grupoExistente = grupoProdutoRepository.porNome(grupoProduto.getNome());
+		
 		if (grupoExistente != null && !grupoExistente.equals(grupoProduto)) {
-			throw new NegocioException("O Grupo " + grupoProduto.getNome()
-					+ " já está cadastrado");
+			throw new NegocioException("O grupo "+grupoExistente.getNome()+" já está cadastrado");
 		}
-
+		
 		return grupoProdutoRepository.guardar(grupoProduto);
 	}
+	
 		
 }

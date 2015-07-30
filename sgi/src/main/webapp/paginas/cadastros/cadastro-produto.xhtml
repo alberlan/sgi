@@ -26,13 +26,11 @@
 
 			<p:panelGrid columns="2" columnClasses="rotulo, campo"
 				styleClass="panelGrid">
-				<p:outputLabel for="codigo" value="Código" />
-				<p:inputText id="codigo" size="10" readonly="true" />
-
+				
 				<p:outputLabel for="codigoBarras" value="Código de Barras" />
-				<p:inputText id="codigoBarras" size="15" />
+				<p:inputText id="codigoBarras" size="25" />
 
-				<p:outputLabel for="descricao" value="Descrição" />
+				<p:outputLabel for="descricao" value="Nome" />
 				<p:inputText id="descricao" size="50" maxlength="50" required="true"
 					onkeyup="this.value = this.value.toUpperCase()" />
 

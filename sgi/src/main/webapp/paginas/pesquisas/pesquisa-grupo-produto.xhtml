@@ -13,25 +13,22 @@
 			<h1>Pesquisa de Grupo</h1>
 			<p:toolbar style="margin-top:05px">
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" />
+					<p:commandButton value="Visualizar Todos" />
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Novo"
-						outcome="/paginas/cadastros/cadastro-grupo-produto" />
+					<p:button value="Novo" outcome="/paginas/cadastros/cadastro-grupo-produto" />
 				</p:toolbarGroup>
 
 			</p:toolbar>
 
-			<p:panelGrid styleClass="panelGrid" columnClasses="rotulo,campo"
-				columns="2" style="margin-bottom:10px">
+			<p:panelGrid styleClass="panelGrid" columnClasses="rotulo,campo" columns="2" style="margin-bottom:10px">
 				
 				<p:outputLabel for="codigo" value="Código" />
 				<p:inputText id="codigo" size="10" />
 
-				<p:outputLabel for="descricao" value="Descrição" />
-				<p:inputText id="descricao" size="40"
-					onkeyup="this.value = this.value.toUpperCase()" />
+				<p:outputLabel for="nome" value="Nome" />
+				<p:inputText id="nome" size="40" onkeyup="this.value = this.value.toUpperCase()" />
 
 			</p:panelGrid>
 

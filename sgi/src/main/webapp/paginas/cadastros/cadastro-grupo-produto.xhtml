@@ -18,29 +18,20 @@
 				<p:toolbarGroup>
 					<p:button value="Novo"
 						outcome="/paginas/cadastros/cadastro-grupo-produto" />
-					<p:commandButton value="Salvar"
-						action="#{cadastroGrupoProdutoBean.salvar}" />
+					<p:commandButton value="Salvar"	action="#{cadastroGrupoProdutoBean.salvar}" update="@form"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Pesquisar"
-						outcome="/paginas/pesquisas/pesquisa-grupo-produto"  />
+					<p:button value="Pesquisar"	outcome="/paginas/pesquisas/pesquisa-grupo-produto" />
 				</p:toolbarGroup>
 
 			</p:toolbar>
 
-			<p:panelGrid columns="2" columnClasses="rotulo, campo"
-				styleClass="panelGrid">
-
-				<p:outputLabel for="codigo" value="Código" />
-				<p:inputText id="codigo" size="10" readonly="true" />
+			<p:panelGrid columns="2" columnClasses="rotulo, campo" styleClass="panelGrid">				
 
 				<p:outputLabel for="nome" value="Nome" />
-				<p:inputText id="nome" size="50" 
-					onkeyup="this.value = this.value.toUpperCase()"
-					value="#{cadastroGrupoProdutoBean.grupoProduto.nome}" />
-					
-					
+				<p:inputText id="nome" size="50" onkeyup="this.value = this.value.toUpperCase()"
+					value="#{cadastroGrupoProdutoBean.grupoProduto.nome}" />					
 
 			</p:panelGrid>
 
