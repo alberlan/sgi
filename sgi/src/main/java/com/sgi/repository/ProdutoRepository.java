@@ -13,34 +13,30 @@ import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
-import com.sgi.filter.GrupoProdutoFilter;
-import com.sgi.model.GrupoProduto;
+import com.sgi.filter.ProdutoFilter;
+import com.sgi.model.Produto;
 
-public class GrupoProdutoRepository implements Serializable {
+public class ProdutoRepository implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	EntityManager manager;
 	
-	public GrupoProduto guardar(GrupoProduto grupoProduto) {
-		return manager.merge(grupoProduto);
+	public Produto guardar(Produto produto) {
+		return manager.merge(produto);
 	}
 	
-	public List<GrupoProduto>buscarGrupo(){		
-		return manager.createQuery("from GrupoProduto", GrupoProduto.class).getResultList();
-	}
-
-	public GrupoProduto porCodigo(Long codigo) {
-		return manager.find(GrupoProduto.class, codigo);
+	public Produto porCodigo(Long codigo) {
+		return manager.find(Produto.class, codigo);
 
 	}
 
-	public GrupoProduto porNome(String nome) {
+	public Produto porNome(String nome) {
 		try {
 			return manager
-					.createQuery("from GrupoProduto where upper(nome) = :nome",
-							GrupoProduto.class)
+					.createQuery("from Produto where upper(nome) = :nome",
+							Produto.class)
 					.setParameter("nome", nome.toUpperCase()).getSingleResult();
 		} catch (NoResultException e) {
 			return null;
@@ -49,9 +45,9 @@ public class GrupoProdutoRepository implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<GrupoProduto>filtrados(GrupoProdutoFilter filtro){
+	public List<Produto>filtrados(ProdutoFilter filtro){
 		Session session= manager.unwrap(Session.class);
-		Criteria criteria = session.createCriteria(GrupoProduto.class);//Estou criando criterio para grupoproduto
+		Criteria criteria = session.createCriteria(Produto.class);//Estou criando criterio para grupoproduto
 		
 		if(StringUtils.isNotBlank(filtro.getNome())){
 			criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));

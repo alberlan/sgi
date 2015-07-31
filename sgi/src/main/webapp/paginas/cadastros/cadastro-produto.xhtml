@@ -8,6 +8,10 @@
 
 	<ui:define name="titulo">Cadastro de Produto</ui:define>
 	<ui:define name="corpo">
+	
+	<f:metadata>
+	<f:event listener="#{cadastroProdutoBean.inicializarGrupo}" type="preRenderView"></f:event>
+	</f:metadata>
 
 		<h:form>
 			<h1>Novo Produto</h1>
@@ -15,7 +19,7 @@
 			<p:toolbar style="margin-top:05px">
 				<p:toolbarGroup>
 					<p:button value="Novo" />
-					<p:commandButton value="Salvar" action="#{cadastroProdutoBean.salvar}" />
+					<p:commandButton value="Salvar" action="#{cadastroProdutoBean.salvar}" update="@form"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
@@ -24,47 +28,47 @@
 
 			</p:toolbar>
 
-			<p:panelGrid columns="2" columnClasses="rotulo, campo"
-				styleClass="panelGrid">
+			<p:panelGrid columns="2" columnClasses="rotulo, campo" styleClass="panelGrid">
 				
 				<p:outputLabel for="codigoBarras" value="Código de Barras" />
-				<p:inputText id="codigoBarras" size="25" />
+				<p:inputText id="codigoBarras" size="25" value="#{cadastroProdutoBean.produto.codigoBarras}"/>
 
-				<p:outputLabel for="descricao" value="Nome" />
-				<p:inputText id="descricao" size="50" maxlength="50" required="true"
-					onkeyup="this.value = this.value.toUpperCase()" />
+				<p:outputLabel for="nome" value="Nome" />
+				<p:inputText id="nome" size="50" maxlength="50" onkeyup="this.value = this.value.toUpperCase()" 
+				              value="#{cadastroProdutoBean.produto.nome}"/>
 
 				<p:outputLabel for="grupo" value="Grupo" />
-				<p:selectOneMenu id="grupo" value="#{teste.profissao}" effect="fold"
-					filter="true">
+				<p:selectOneMenu id="grupo"  effect="fold" filter="true" value="#{cadastroProdutoBean.produto.grupoProduto}">
 					<f:selectItem itemLabel="Selecione uma Categoria" itemValue="" />
-					<f:selectItem itemLabel="Bebidas" itemValue="1" />
-					<f:selectItem itemLabel="Igiene" itemValue="2" />
-					<f:selectItem itemLabel="Pereciveis" itemValue="3" />
+					<f:selectItems var="grupo" itemLabel="#{grupo.nome}" itemValue="#{grupo}" value="#{cadastroProdutoBean.listaGrupoProdutos}"/>
 				</p:selectOneMenu>
 
 				<p:outputLabel for="precoCusto" value="Preço de Custo" />
-				<p:inputText id="precoCusto" size="10" maxlength="10"
-					required="true" styleClass="moeda" />
+				<p:inputText id="precoCusto" size="10" styleClass="moeda" value="#{cadastroProdutoBean.produto.precoCusto}">
+				      <f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+				      <p:ajax event="change" process="@this" update="margemLucro" listener="#{cadastroProdutoBean.calcularMargemLucro}"/>
+				</p:inputText>
 
 				<p:outputLabel for="precoVenda" value="Preço de Venda" />
-				<p:inputText id="precoVenda" size="10" maxlength="10"
-					required="true" styleClass="moeda" />
+				<p:inputText id="precoVenda" size="10" maxlength="10" styleClass="moeda" value="#{cadastroProdutoBean.produto.precoVenda}" >
+					<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+				    <p:ajax event="change" process="@this" update="margemLucro" listener="#{cadastroProdutoBean.calcularMargemLucro}"/>
+			   </p:inputText>
 
 
 				<p:outputLabel for="margemLucro" value="Margem de Lucro" />
-				<p:inputText id="margemLucro" size="10" styleClass="moeda" value="10,00" readonly="true" />
+				<p:inputText id="margemLucro" size="10" styleClass="moeda" value="#{cadastroProdutoBean.produto.margemLucro}" >
+				              <f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+				</p:inputText>
 
 				<p:outputLabel for="ultimaCompra" value="Data da Ultima Compra" />
-				<p:inputText id="ultimaCompra" size="10" maxlength="10"
-					readonly="true" />
+				<p:inputText id="ultimaCompra" size="10" maxlength="10"	readonly="true" />
 
 				<p:outputLabel for="estoqueAtual" value="Estoque Atual" />
-				<p:inputText id="estoqueAtual" size="10" maxlength="10"
-					readonly="true" />
+				<p:inputText id="estoqueAtual" size="10" maxlength="10"	readonly="true" />
 
 				<p:outputLabel for="quantidadeMinima" value="Quantidade Minima" />
-				<p:inputText id="quantidadeMinima" size="10" maxlength="10" required="true"/>
+				<p:inputText id="quantidadeMinima" size="10" value="#{cadastroProdutoBean.produto.quantidadeMinima}" />
 
 
 			</p:panelGrid>

@@ -1,33 +1,68 @@
 package com.sgi.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.sgi.service.NegocioException;
+import com.sgi.model.GrupoProduto;
+import com.sgi.model.Produto;
+import com.sgi.repository.GrupoProdutoRepository;
+import com.sgi.service.CadastroProdutoService;
+import com.sgi.util.jsf.FacesUtil;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class CadastroProdutoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private List<Integer> itens;
+	@Inject
+	private GrupoProdutoRepository grupoProdutoRepository;
+
+	@Inject
+	private CadastroProdutoService cadastroProdutoService;
+
+	private List<GrupoProduto> listaGrupoProdutos;
+	private Produto produto;
 
 	public CadastroProdutoBean() {
-		itens = new ArrayList<Integer>();
-		itens.add(1);
+		limpar();
+	}
+
+	public void inicializarGrupo() {
+		if (FacesUtil.isNotPostback()) {
+			listaGrupoProdutos = grupoProdutoRepository.buscarGrupo();
+		}
 	}
 
 	public void salvar() {
-		
+		produto = cadastroProdutoService.salvar(produto);
+		limpar();
+		FacesUtil.addInfoMessage("Produto cadastrado com sucesso!");
+
+	}
+	
+	public void calcularMargemLucro(){
+		this.produto.margemLucro();
 	}
 
-	public List<Integer> getItens() {
-		return itens;
+	private void limpar() {
+		produto = new Produto();
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public List<GrupoProduto> getListaGrupoProdutos() {
+		return listaGrupoProdutos;
 	}
 
 }
