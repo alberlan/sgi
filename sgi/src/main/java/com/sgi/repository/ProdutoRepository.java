@@ -55,4 +55,8 @@ public class ProdutoRepository implements Serializable {
 		
 		return criteria.addOrder(org.hibernate.criterion.Order.asc("nome")).list();
 	}
+	
+	public List<Produto>buscarTodos(){
+		return manager.createQuery("from Produto", Produto.class).getResultList();
+	}
 }

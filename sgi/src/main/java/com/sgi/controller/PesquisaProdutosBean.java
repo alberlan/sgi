@@ -1,25 +1,43 @@
 package com.sgi.controller;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
+import com.sgi.filter.ProdutoFilter;
+import com.sgi.model.Produto;
+import com.sgi.repository.ProdutoRepository;
 
-public class PesquisaProdutosBean {
+@Named
+@ViewScoped
+public class PesquisaProdutosBean implements Serializable {
 
-	private List<Integer> produtosFiltrados;
-	
+	private static final long serialVersionUID = 1L;
+
+	@Inject
+	private ProdutoRepository produtoRepository;
+
+	private ProdutoFilter filtro;
+	private List<Produto> produtos;
+
 	public PesquisaProdutosBean() {
-		produtosFiltrados = new ArrayList<>();
-		for (int i = 0; i < 50; i++) {
-			produtosFiltrados.add(i);
-		}
+		filtro = new ProdutoFilter();
+
 	}
 
-	public List<Integer> getProdutosFiltrados() {
-		return produtosFiltrados;
+	public void pesquisar() {
+		produtos = produtoRepository.buscarTodos();
 	}
-	
+
+	public ProdutoFilter getFiltro() {
+		return filtro;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
 }

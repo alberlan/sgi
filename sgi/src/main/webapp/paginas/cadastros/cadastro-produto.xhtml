@@ -31,7 +31,7 @@
 			<p:panelGrid columns="2" columnClasses="rotulo, campo" styleClass="panelGrid">
 				
 				<p:outputLabel for="codigoBarras" value="Código de Barras" />
-				<p:inputText id="codigoBarras" size="25" value="#{cadastroProdutoBean.produto.codigoBarras}"/>
+				<p:inputText id="codigoBarras" size="25" value="#{cadastroProdutoBean.produto.codigoBarras}" onkeyup="this.value = this.value.toUpperCase()"/>
 
 				<p:outputLabel for="nome" value="Nome" />
 				<p:inputText id="nome" size="50" maxlength="50" onkeyup="this.value = this.value.toUpperCase()" 

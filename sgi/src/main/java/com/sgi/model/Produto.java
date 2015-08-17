@@ -23,7 +23,7 @@ public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long codigo;
-	private Long codigoBarras;
+	private String codigoBarras;
 	private String nome;
 	private GrupoProduto grupoProduto;
 	private BigDecimal precoCusto = BigDecimal.ZERO;
@@ -42,13 +42,13 @@ public class Produto implements Serializable {
 		this.codigo = codigo;
 	}
 
-	@NotNull
+	@NotBlank
 	@Column(name = "codigo_barras", nullable = false, length = 25)
-	public Long getCodigoBarras() {
+	public String getCodigoBarras() {
 		return codigoBarras;
 	}
 
-	public void setCodigoBarras(Long codigoBarras) {
+	public void setCodigoBarras(String codigoBarras) {
 		this.codigoBarras = codigoBarras;
 	}
 
@@ -57,6 +57,8 @@ public class Produto implements Serializable {
 	public String getNome() {
 		return nome;
 	}
+
+	
 
 	public void setNome(String nome) {
 		this.nome = nome;

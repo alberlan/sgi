@@ -13,7 +13,7 @@
 			<h1>Pesquisa de Produto</h1>
 			<p:toolbar style="margin-top:05px">
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" />
+					<p:commandButton value="Pesquisar" action="#{pesquisaProdutosBean.pesquisar}" update="@form"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
@@ -25,6 +25,7 @@
 
 			<p:panelGrid styleClass="panelGrid" columnClasses="rotulo,campo"
 				columns="2" style="margin-bottom:10px">
+				
 				<p:outputLabel for="codigo" value="Código" />
 				<p:inputText id="codigo" size="10" />
 
@@ -34,15 +35,15 @@
 
 			</p:panelGrid>
 
-			<p:dataTable value="#{pesquisaProdutosBean.produtosFiltrados}"
-				var="produto">
+			<p:dataTable id="produtosTable" value="#{pesquisaProdutosBean.produtos}" var="produto" paginator="true"
+			             paginatorAlwaysVisible="false" paginatorPosition="bottom" rows="10" emptyMessage="Nenhum produto encontrado" >
 
 				<p:column headerText="Código" width="40">
-					<h:outputText value="0001" />
+					<h:outputText value="#{produto.codigo}" />
 				</p:column>
 
 				<p:column headerText="Produto">
-					<h:outputText value="BORRACHA DE APAGAR AZUL 500 MILIGRAMAS" />
+					<h:outputText value="#{produto.nome}" />
 				</p:column>
 
 				<p:column headerText="Fornecedor">
@@ -50,15 +51,15 @@
 				</p:column>
 
 				<p:column headerText="Preço de Custo" width="65">
-					<h:outputText value="200,00" />
+					<h:outputText value="#{produto.precoCusto}" />
 				</p:column>
 
 				<p:column headerText="Preço de Venda" width="65">
-					<h:outputText value="300,00" />
+					<h:outputText value="#{produto.precoVenda}" />
 				</p:column>
 
 				<p:column headerText="Margem de Lucro" width="65">
-					<h:outputText value="10,00" />
+					<h:outputText value="#{produto.margemLucro}" />
 				</p:column>
 
 				<p:column headerText="Estoque Atual" width="60">

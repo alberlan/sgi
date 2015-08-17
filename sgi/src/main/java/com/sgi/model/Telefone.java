@@ -2,6 +2,18 @@ package com.sgi.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "telefone")
 public class Telefone implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -10,7 +22,11 @@ public class Telefone implements Serializable {
 	private String telefoneResidencial;
 	private String telefoneComercial;
 	private String telefoneCelular;
+	private Fornecedor fornecedor;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codigo", length = 10)
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -41,6 +57,16 @@ public class Telefone implements Serializable {
 
 	public void setTelefoneCelular(String telefoneCelular) {
 		this.telefoneCelular = telefoneCelular;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "codigo_fornecedor")
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 
 	@Override
